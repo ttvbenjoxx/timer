@@ -70,18 +70,20 @@ function renderTimerAndSchedule() {
 
   const timerRing = document.querySelector(".timer-ring .progress-ring");
   const centerText = document.querySelector(".timer-ring .center-text");
+  const nextPeriodElement = document.querySelector("#next-period");
 
   if (currentPeriod) {
-    const percentage = ((currentPeriod.timeLeft / (formatTime(currentPeriod.end) - formatTime(currentPeriod.start))) * 100).toFixed(2);
+    const totalTime = (formatTime(currentPeriod.end) - formatTime(currentPeriod.start)) / 1000;
+    const percentage = ((currentPeriod.timeLeft / totalTime) * 100).toFixed(2);
     timerRing.style.strokeDasharray = `${percentage} 100`;
     centerText.innerHTML = `<h2>${currentPeriod.name}</h2><p>Ends at ${currentPeriod.end}</p>`;
   } else {
     centerText.innerHTML = `<h2>No Current Period</h2>`;
+    timerRing.style.strokeDasharray = `0 100`;
   }
 
   const nextPeriodIndex = todaySchedule.findIndex(period => formatTime(period.start) > new Date());
   const nextPeriod = todaySchedule[nextPeriodIndex];
-  const nextPeriodElement = document.querySelector("#next-period");
 
   if (nextPeriod) {
     nextPeriodElement.textContent = `Next: ${nextPeriod.name} begins at ${nextPeriod.start}`;
