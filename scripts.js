@@ -104,10 +104,11 @@ function updateTimer() {
 
     const elapsed = nowMinutes - start;
     const total = end - start;
+    const remainingTime = total - elapsed;
     const percentage = (elapsed / total) * 100;
 
     progressRing.style.strokeDasharray = `${percentage} 100`;
-    timerElement.innerHTML = `<h2>${currentPeriod.name}</h2><p>Ends at ${currentPeriod.end}</p>`;
+    timerElement.innerHTML = `<h2>${currentPeriod.name}</h2><p>Ends at ${currentPeriod.end}</p><p>${Math.floor(remainingTime / 60)}m ${remainingTime % 60}s left</p>`;
 
     const todaySchedule = schedule[now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase()];
     const nextIndex = todaySchedule.findIndex(period => parseTime(period.start) > nowMinutes);
