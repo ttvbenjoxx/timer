@@ -64,7 +64,6 @@ const schedule = {
   ]
 };
 
-// Format time
 function parseTime(timeStr) {
   const [time, period] = timeStr.split(" ");
   const [hours, minutes] = time.split(":").map(Number);
@@ -89,14 +88,18 @@ function getCurrentPeriod() {
 }
 
 function updateTimer() {
-  const currentPeriod = getCurrentPeriod();
+  const now = new Date();
+  const timeElement = document.getElementById("current-date");
   const timerElement = document.querySelector(".timer-ring .center-text");
   const progressRing = document.querySelector(".progress-ring");
+  const nextPeriodElement = document.getElementById("next-period");
 
+  timeElement.textContent = `Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
+
+  const currentPeriod = getCurrentPeriod();
   if (currentPeriod) {
     const start = parseTime(currentPeriod.start);
     const end = parseTime(currentPeriod.end);
-    const now = new Date();
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
     const elapsed = nowMinutes - start;
@@ -105,9 +108,19 @@ function updateTimer() {
 
     progressRing.style.strokeDasharray = `${percentage} 100`;
     timerElement.innerHTML = `<h2>${currentPeriod.name}</h2><p>Ends at ${currentPeriod.end}</p>`;
+
+    const todaySchedule = schedule[now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase()];
+    const nextIndex = todaySchedule.findIndex(period => parseTime(period.start) > nowMinutes);
+    if (nextIndex !== -1) {
+      const nextPeriod = todaySchedule[nextIndex];
+      nextPeriodElement.textContent = `Next period: ${nextPeriod.name} starts at ${nextPeriod.start}`;
+    } else {
+      nextPeriodElement.textContent = "Next period: None";
+    }
   } else {
     progressRing.style.strokeDasharray = "0 100";
     timerElement.innerHTML = `<h2>No Current Period</h2>`;
+    nextPeriodElement.textContent = "Next period: None";
   }
 }
 
