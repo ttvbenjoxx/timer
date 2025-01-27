@@ -2,18 +2,18 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(180deg, #0a0f24, #162544);
-  color: #fff;
+  background: linear-gradient(to bottom, #0a0f24, #162544);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
+  text-align: center;
 }
 
 #app {
-  text-align: center;
-  width: 90%;
   max-width: 600px;
+  width: 90%;
 }
 
 .header {
@@ -25,13 +25,13 @@ body {
   margin: 0;
 }
 
-.header .date {
+.header #current-date {
   font-size: 1.2rem;
   margin-top: 5px;
 }
 
 .timer {
-  margin-top: 30px;
+  margin: 30px 0;
 }
 
 .timer-ring {
@@ -55,8 +55,8 @@ body {
   fill: none;
   stroke: #ff8303;
   stroke-width: 10;
-  stroke-linecap: round;
   stroke-dasharray: 0 100;
+  stroke-linecap: round;
   transition: stroke-dasharray 0.3s ease;
 }
 
@@ -79,7 +79,6 @@ body {
 }
 
 .next-period {
-  margin-top: 20px;
   font-size: 1.2rem;
-  font-weight: 300;
+  margin-top: 20px;
 }
