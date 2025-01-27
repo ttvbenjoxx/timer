@@ -125,5 +125,11 @@ function updateTimer() {
   }
 }
 
+function animateTimerRing() {
+  const progressRing = document.querySelector(".progress-ring");
+  progressRing.style.transition = "stroke-dasharray 1s linear";
+}
+
+animateTimerRing();
 setInterval(updateTimer, 1000);
 document.addEventListener("DOMContentLoaded", updateTimer);
