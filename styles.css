@@ -2,53 +2,84 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
-  color: #333;
+  background: linear-gradient(180deg, #0a0f24, #162544);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 #app {
   text-align: center;
-  padding: 20px;
+  width: 90%;
+  max-width: 600px;
 }
 
 .header {
   margin-bottom: 20px;
 }
 
-.clock {
-  font-size: 1.5rem;
-  margin-top: 10px;
+.header h1 {
+  font-size: 2rem;
+  margin: 0;
 }
 
-.schedule {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.header .date {
+  font-size: 1.2rem;
+  margin-top: 5px;
 }
 
-.schedule ul {
-  list-style: none;
-  padding: 0;
-}
-
-.schedule li {
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.schedule li:last-child {
-  border-bottom: none;
+.timer {
+  margin-top: 30px;
 }
 
 .timer-ring {
-  margin-top: 20px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
 }
 
-svg {
-  display: block;
-  margin: 0 auto;
+.timer-ring svg {
+  transform: rotate(-90deg);
+}
+
+.timer-ring .background-ring {
+  fill: none;
+  stroke: #1f3559;
+  stroke-width: 10;
+}
+
+.timer-ring .progress-ring {
+  fill: none;
+  stroke: #ff8303;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 0 100;
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.timer-ring .center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-ring .center-text h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.timer-ring .center-text p {
+  font-size: 1rem;
+  margin: 5px 0 0;
+}
+
+.next-period {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 300;
 }
